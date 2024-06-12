@@ -1,11 +1,13 @@
 # route directory
-node_modules/
+node_modules
+.next
 
 # next-app
-nameless-next-app/node_modules
+# nameless-next-app/node_modules
 
 # react-app
-namelless-react-app/node_modules
+next-env.d.ts
+
 
 # nest-backend
-nameless-nest-backend/node_modules
+# nameless-nest-backend/node_modules
