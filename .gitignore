@@ -1,0 +1,11 @@
+# route directory
+node_modules/
+
+# next-app
+nameless-next-app/node_modules
+
+# react-app
+namelless-react-app/node_modules
+
+# nest-backend
+nameless-nest-backend/node_modules
