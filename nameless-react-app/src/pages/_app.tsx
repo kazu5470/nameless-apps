@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { SWRConfig } from 'swr';
 
-function App() {
+import Home from '@/pages/Home';
+import Top from '@/pages/Top';
+import Todo from '@/pages/Todo';
+import '@mantine/core/styles.css';
+import { AppShell } from '@/components/AppShell';
+
+import { MantineProvider } from '@mantine/core';
+import { Sidebar } from '@/components/Sidebar';
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <MantineProvider>
+        <SWRConfig
+          value={{
+            revalidateOnFocus: false,
+            revalidateOnReconnect: false,
+          }}
+        />
+        <AppShell />
+        <Home />
+        <Top />
+        <Todo />
+      </MantineProvider>
+    </>
   );
 }
-
-export default App;

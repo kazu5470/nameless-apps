@@ -1,5 +1,7 @@
 import { Text } from '@mantine/core';
 
-export const Home = () => {
+function Home() {
   return <Text>これはHomeのページです</Text>;
-};
+}
+
+export default Home;

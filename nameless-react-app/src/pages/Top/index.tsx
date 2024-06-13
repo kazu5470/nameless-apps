@@ -1,5 +1,7 @@
 import { Text } from '@mantine/core';
 
-export const Top = () => {
+function Top() {
   return <Text>TOPページ</Text>;
-};
+}
+
+export default Top;
