@@ -1,16 +1,21 @@
 import React from 'react';
 import { SWRConfig } from 'swr';
 
-import Home from '@/pages/Home';
-import Top from '@/pages/Top';
-import Todo from '@/pages/Todo';
 import '@mantine/core/styles.css';
 import { AppShell } from '@/components/AppShell';
 
 import { MantineProvider } from '@mantine/core';
-import { Sidebar } from '@/components/Sidebar';
+import { path } from '@/config/path';
 
-export default function App() {
+type ComponentType = React.ComponentType & {
+  layout?: string;
+};
+
+type AppProps = {
+  Component: ComponentType;
+};
+
+export default function App({ Component }: AppProps) {
   return (
     <>
       <MantineProvider>
@@ -20,10 +25,7 @@ export default function App() {
             revalidateOnReconnect: false,
           }}
         />
-        <AppShell />
-        <Home />
-        <Top />
-        <Todo />
+        <AppShell mainContent={<Component />} path={path} />
       </MantineProvider>
     </>
   );
