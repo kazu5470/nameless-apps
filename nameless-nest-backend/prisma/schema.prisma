@@ -32,7 +32,7 @@ model Posts {
 model PostComments {
   id              String               @id @default(uuid())
   body            String               @map("body")
-  post            Posts?               @relation(fields: [postId], references: [id],onUpdate: Cascade,onDelete: Cascade)
+  post            Posts                @relation(fields: [postId], references: [id],onUpdate: Cascade,onDelete: Cascade)
   postId          String
   user            User                 @relation(fields: [userId],references: [id], onUpdate: Cascade, onDelete: Cascade)
   userId          String
