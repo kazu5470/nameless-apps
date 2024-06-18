@@ -16,8 +16,15 @@ datasource db {
 
 model User {
   id              String               @id @default(uuid())
+  firstName       String               @default("") @map("first_name") @db.VarChar(30)
+  lastName        String               @default("") @map("last_name") @db.VarChar(30)
+  email           String               @default("") @db.VarChar(255)
+
+  favorite        Favorite[]
   post            Posts[]
-  postComment     PostComments[]
+  postComments    PostComments[]
+
+  @@map("user")
 }
 
 model Posts {
@@ -27,6 +34,15 @@ model Posts {
   postCommentId   String               @map("post_comment_id")
   user            User                 @relation(fields: [userId],references: [id], onUpdate: Cascade)
   userId          String
+
+  postTags        PostTags[]
+
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @default(now())
+  createdBy       String               @default("") @map("created_by") @db.VarChar(255)
+  updatedBy       String               @default("") @map("updated_by") @db.VarChar(255)
+
+  @@map("posts")
 }
 
 model PostComments {
@@ -34,7 +50,69 @@ model PostComments {
   body            String               @map("body")
   post            Posts                @relation(fields: [postId], references: [id],onUpdate: Cascade,onDelete: Cascade)
   postId          String
-  user            User                 @relation(fields: [userId],references: [id], onUpdate: Cascade, onDelete: Cascade)
-  userId          String
 
+  favorite        Favorite[]
+  user            User                 @relation(fields: [userId], references: [id],onUpdate: Cascade,onDelete: Cascade)
+  userId          String               @map("userId")
+
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @default(now())
+  createdBy       String               @default("") @map("created_by") @db.VarChar(255)
+  updatedBy       String               @default("") @map("updated_by") @db.VarChar(255)
+
+  @@map("post_comments")
 }
+
+model Favorite {
+  user           User                 @relation(fields: [userId],references: [id], onDelete: Cascade)
+  userId         String               @map("userId")
+  postComment    PostComments         @relation(fields: [postCommentId], references: [id], onDelete: Cascade)
+  postCommentId  String               @map("post_comment_id")
+
+  @@map("favorite")
+  @@id([userId, postCommentId])
+}
+
+
+model AdminUser {
+  id              String               @id @default(uuid())
+  name            String               @default("") @map("name") @db.VarChar(40)
+  email           String               @default("") @db.VarChar(255)
+
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @default(now())
+  createdBy       String               @default("") @map("created_by") @db.VarChar(255)
+  updatedBy       String               @default("") @map("updated_by") @db.VarChar(255)
+
+  @@map("admin_user")
+}
+
+model PostTags {
+  id              String               @id @default(uuid())
+  postTagMasterId String               @map("post_tag_master_id")
+  post            Posts                @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  postId          String               @map("post_id")
+  postTagMaster   PostTagMaster[]       
+
+  @@map("post_tags")
+}
+
+model PostTagMaster {
+  id              Int                   @id @default(autoincrement())
+  text            String                @default("") @db.VarChar(255)
+  order           Int                   @unique @default(autoincrement())
+
+  postTags        PostTags             @relation(fields: [postTagsId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  postTagsId      String               @map("post_tags_id")
+
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @default(now())
+  createdBy       String               @default("") @map("created_by") @db.VarChar(255)
+  updatedBy       String               @default("") @map("updated_by") @db.VarChar(255)
+
+  @@map("post_tag_master")
+}
+
+
+
+
