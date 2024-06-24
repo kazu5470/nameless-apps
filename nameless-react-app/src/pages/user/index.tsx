@@ -1,5 +1,5 @@
 import { UserInformation } from '@/features/user/UserInformation';
 
-export function User() {
+export default function User() {
   return <UserInformation />;
 }

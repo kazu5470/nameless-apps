@@ -31,7 +31,7 @@ export function AppShell({ mainContent, path }: AppShellProps) {
           <MantineLogo size={30} />
         </Group>
       </AppShellMantine.Header>
-      <AppShellMantine.Navbar p="md">
+      <AppShellMantine.Navbar p="sm" style={{ width: '10%' }}>
         {path.map((path, index) => (
           <Text
             key={index}
@@ -43,7 +43,7 @@ export function AppShell({ mainContent, path }: AppShellProps) {
           </Text>
         ))}
       </AppShellMantine.Navbar>
-      <AppShellMantine.Main>{mainContent}</AppShellMantine.Main>
+      <AppShellMantine.Main pl={'12%'}>{mainContent}</AppShellMantine.Main>
     </AppShellMantine>
   );
 }

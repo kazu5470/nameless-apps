@@ -1,5 +1,5 @@
 import { PostList } from '@/features/posts/PostList';
 
-export function Posts() {
+export default function Posts() {
   return <PostList />;
 }

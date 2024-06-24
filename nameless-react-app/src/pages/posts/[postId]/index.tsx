@@ -1,4 +1,4 @@
-import { PostDetail } from '@/features/admin/posts/PostDetail';
+import { PostDetail } from '@/features/posts/PostDetail';
 
 export default function postDetail() {
   return <PostDetail />;
