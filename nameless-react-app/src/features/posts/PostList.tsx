@@ -1,6 +1,4 @@
 import { Button } from '@/components/Button';
-import { Table } from '@/components/Table';
-import { postList } from '@/data';
 import type { PostList as Posts } from '@/features/posts/types/postList';
 import { useRouter } from 'next/router';
 import { PostTable } from './components/PostTable';
