@@ -13,6 +13,6 @@ FROM builder
 
 COPY --from=builder /usr/src/app/dist ./dist
 
-EXPOSE 8080
+EXPOSE 9090
 
 CMD [ "node", "dist/main.js" ]
