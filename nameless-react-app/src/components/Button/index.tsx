@@ -13,7 +13,7 @@ export type ButtonProps = ButtonMantineProps & {
 
 export function Button({ title, onClick, textProps, ...props }: ButtonProps) {
   return (
-    <ButtonMantine {...props}>
+    <ButtonMantine onClick={onClick} {...props}>
       <Text {...textProps}>{title}</Text>
     </ButtonMantine>
   );
