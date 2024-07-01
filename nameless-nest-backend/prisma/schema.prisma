@@ -31,11 +31,11 @@ model Posts {
   id              String               @id @default(uuid())
   content         String
   postComment     PostComments[]
-  postCommentId   String               @map("post_comment_id")
-  user            User                 @relation(fields: [userId],references: [id], onUpdate: Cascade)
-  userId          String
+  postCommentId   String?               @map("post_comment_id")
+  user            User?                @relation(fields: [userId],references: [id], onUpdate: Cascade)
+  userId          String?
 
-  postTags        PostTags[]
+  // postTags        PostTags[]
 
   createdAt       DateTime             @default(now())
   updatedAt       DateTime             @default(now())
@@ -90,8 +90,8 @@ model AdminUser {
 model PostTags {
   id              String               @id @default(uuid())
   postTagMasterId String               @map("post_tag_master_id")
-  post            Posts                @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  postId          String               @map("post_id")
+  // post            Posts                @relation(fields: [postId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  // postId          String               @map("post_id")
   postTagMaster   PostTagMaster[]       
 
   @@map("post_tags")

@@ -18,7 +18,7 @@ export const PostTable = () => {
       <td style={{ maxWidth: '20%' }}>
         {post.postTags.map((tag) => tag.text)}
       </td>
-      <td style={{ maxWidth: '20%' }}>{post.createdAt.toLocaleString()}</td>
+      {/* <td style={{ maxWidth: '20%' }}>{post.createdAt.toLocaleString()}</td> */}
     </tr>
   ));
   return (
